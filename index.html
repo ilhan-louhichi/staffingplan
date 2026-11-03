@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Staffing Plan DevOps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Staffing plan</h1>
+      <p>Qui travaille sur quelle application, et pour quelle part de son temps. Cliquez une case pour affecter un DevOps ou ajuster son pourcentage. Les données restent dans ce navigateur : utilisez « Sauvegarde JSON » pour les conserver ou les partager.</p>
+    </div>
+    <div class="stats" id="stats" aria-label="Indicateurs"></div>
+  </header>
+
+  <section class="tools" aria-label="Édition">
+    <form id="f-dev" autocomplete="off">
+      <label for="in-dev">Ajouter des DevOps</label>
+      <div class="row"><input type="text" id="in-dev" placeholder="Nom, ou plusieurs séparés par une virgule"><button class="btn" type="submit">Ajouter</button></div>
+    </form>
+    <form id="f-app" autocomplete="off">
+      <label for="in-app">Ajouter des applications</label>
+      <div class="row"><input type="text" id="in-app" placeholder="Nom, ou plusieurs séparés par une virgule"><button class="btn" type="submit">Ajouter</button></div>
+    </form>
+    <div class="grow">
+      <label for="in-q">Filtrer</label>
+      <input type="search" id="in-q" placeholder="Un DevOps ou une application">
+    </div>
+    <label class="chk"><input type="checkbox" id="in-risk"> Applications à risque</label>
+  </section>
+
+  <div class="viewbar">
+    <div class="tabs" role="tablist" aria-label="Vue">
+      <button class="tab" role="tab" id="tab-matrix" aria-selected="true">Matrice</button>
+      <button class="tab" role="tab" id="tab-list" aria-selected="false">Listes</button>
+    </div>
+    <div class="acts">
+      <span class="status" id="status" role="status" aria-live="polite"></span>
+      <button class="btn ghost" id="btn-csv" type="button" hidden>Exporter en CSV</button>
+      <button class="btn ghost" id="btn-json-out" type="button" hidden>Sauvegarde JSON</button>
+      <button class="btn ghost" id="btn-json-in" type="button">Importer</button>
+      <input type="file" id="in-file" accept=".json,application/json" hidden>
+    </div>
+  </div>
+
+  <div class="legend" id="legend">
+    <span><i class="l-ref"></i>Référent</span>
+    <span><i class="l-sup"></i>Renfort</span>
+    <span>Le nombre dans la case est la part du temps du DevOps, en %.</span>
+  </div>
+
+  <div class="editor" id="editor" hidden></div>
+
+  <main id="board"></main>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
